@@ -1,4 +1,4 @@
 ## Todo App
-#### Demo using react & redux
+#### Demo app using react & redux
 
 ![](http://itjobzth.com/welcome.png)
