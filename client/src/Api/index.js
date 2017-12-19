@@ -1,31 +1,23 @@
-import axios from 'axios';
+import axios from "axios";
+import { getAuthHeader } from "../services/authServices";
 
-const baseURL = "localhost";
+const baseURL = "http://localhost:3005";
 const API = {
-  products: {
-    async getAll() {
-      const response = await fetch(`${baseURL}/products`);
-      const data = await response.json();
-      return data;
+  tasks: {
+    async getPendingTasks() {
+      const url = `${baseURL}/tasks/pending`;
+      const response = await axios.get(url, getAuthHeader());
+      return response.data;
     },
-    async getSingle(id) {
-      const response = await fetch(`${baseURL}/products/${id}`);
-      const data = await response.json();
-      return data;
-    },
-    async save(item) {
-      const response = await fetch(`${baseURL}/products`, {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        }),
-        body: JSON.stringify(item)
-      });
-      const data = await response.json();
-      return data;
+    async addTask(title, content) {
+      const url = `${baseURL}/task/add`;
+      const response = await axios.put(
+        url,
+        { title, content },
+        getAuthHeader()
+      );
+      return response.data;
     }
   }
 };
-
 export default API;

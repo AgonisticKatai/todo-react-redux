@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
-import counter from "./counter";
-import pendingTasks from "../reducers/pendingTasks"
+import pendingTasks from "../reducers/pendingTasksReducer"
 
 export default combineReducers({
   routing: routerReducer,

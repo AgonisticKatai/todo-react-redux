@@ -4,15 +4,20 @@ import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
 import store, { history } from "./store";
 import App from "./containers/app";
+import { MuiThemeProvider } from "material-ui";
+
+import "bootstrap/dist/css/bootstrap.css";
 
 const target = document.querySelector("#root");
 
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
-        <App />
-      </div>
+      <MuiThemeProvider>
+        <div>
+          <App />
+        </div>
+      </MuiThemeProvider>
     </ConnectedRouter>
   </Provider>,
   target
