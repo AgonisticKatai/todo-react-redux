@@ -9,11 +9,11 @@ const API = {
       const response = await axios.get(url, getAuthHeader());
       return response.data;
     },
-    async addTask(title, content) {
+    async addTask(newTask) {
       const url = `${baseURL}/task/add`;
       const response = await axios.put(
         url,
-        { title, content },
+        newTask,
         getAuthHeader()
       );
       return response.data;

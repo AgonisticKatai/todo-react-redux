@@ -48,21 +48,21 @@ export function addNewTask(task) {
     });
     try {
       await API.tasks.addTask(task);
-      return dispatch(addNewTaskSucces());
+      return dispatch(addNewTaskSucces(task));
     } catch (error) {
       return dispatch(addNewTaskFailure(error));
     }
   };
 }
 
-export function addNewTaskSucces (task) {
+export function addNewTaskSucces(task) {
   return {
     type: ADD_NEW_TASK_SUCCES,
     payload: task
   };
 }
 
-export function addNewTaskFailure (error) {
+export function addNewTaskFailure(error) {
   return {
     type: ADD_NEW_TASK_FAILURE,
     payload: error
