@@ -48,7 +48,9 @@ export function addNewTask(task) {
     });
     try {
       await API.tasks.addTask(task);
-      return dispatch(addNewTaskSucces(task));
+      await dispatch(addNewTaskSucces(task));
+      const data = await API.tasks.getPendingTasks();
+      return dispatch(fetchPendingTasksSucces(data.tasks));
     } catch (error) {
       return dispatch(addNewTaskFailure(error));
     }

@@ -15,7 +15,6 @@ class InputForm extends Component {
       title: this.refs.taskTitleInput.getValue(),
       content: this.refs.taskContentInput.getValue()
     };
-    console.log(this.props);
     await this.props.actions.addNewTask(newTask);
   };
 
@@ -42,19 +41,10 @@ class InputForm extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  console.log("mapStateToProps...", state);
-  return {
-    tasks: state.pendingTasks.tasks,
-    loading: state.pendingTasks.loading
-  };
-}
-
 function mapDispatchToProps(dispatch) {
-  console.log("mapDispatchToProps...", dispatch);
   return {
     actions: bindActionCreators(taskActions, dispatch)
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InputForm);
+export default connect(null, mapDispatchToProps)(InputForm);
