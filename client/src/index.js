@@ -6,7 +6,7 @@ import store, { history } from "./store";
 import App from "./containers/app";
 import { MuiThemeProvider } from "material-ui";
 
-import "bootstrap/dist/css/bootstrap.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
 
 const target = document.querySelector("#root");
 
