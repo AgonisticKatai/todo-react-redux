@@ -13,9 +13,17 @@ class Home extends Component {
     await this.props.taskActions.fetchPendingTasks();
   }
 
+  handleRemoveTask = async taskId => {
+    await this.props.taskActions.fetchRemoveTask(taskId);
+  };
+
   render() {
     return (
-      <PendingTasksList tasks={this.props.tasks} loading={this.props.loading} />
+      <PendingTasksList
+        removeTask={this.handleRemoveTask}
+        tasks={this.props.tasks}
+        loading={this.props.loading}
+      />
     );
   }
 }

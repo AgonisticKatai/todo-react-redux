@@ -4,7 +4,10 @@ import {
   FETCH_PENDING_TASKS_FAILURE,
   ADD_NEW_TASK_INIT,
   ADD_NEW_TASK_SUCCES,
-  ADD_NEW_TASK_FAILURE
+  ADD_NEW_TASK_FAILURE,
+  REMOVE_TASK_INIT,
+  REMOVE_TASK_SUCCES,
+  REMOVE_TASK_FAILURE
 } from "../actions/types";
 
 import initialState from "./initialState";
@@ -24,8 +27,7 @@ export default function pendingTasksReducer(
         ...state,
         tasks: action.payload,
         error: null,
-        loading: false,
-        total: action.payload.length
+        loading: false
       };
     case FETCH_PENDING_TASKS_FAILURE:
       return {
@@ -43,7 +45,7 @@ export default function pendingTasksReducer(
     case ADD_NEW_TASK_SUCCES:
       return {
         ...state,
-        tasks: [...state.tasks, action.payload],
+        tasks: [...state.tasks],
         error: null,
         loading: false
       };
@@ -52,7 +54,28 @@ export default function pendingTasksReducer(
         ...state,
         error: action.payload,
         loading: false
-      }
+      };
+    case REMOVE_TASK_INIT:
+      return {
+        state: state.filter(taskId => {
+          return taskId !== action._id;
+        }),
+        error: null,
+        loading: true
+      };
+    case REMOVE_TASK_SUCCES:
+      return {
+        ...state,
+        tasks: [...state.tasks],
+        error: null,
+        loading: false
+      };
+    case REMOVE_TASK_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      };
     default:
       return state;
   }
